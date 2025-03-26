@@ -39,7 +39,7 @@ export default function App() {
     {/*inicio do banner*/}
     <Text style = {styles.textBanner}>Em cartaz</Text>
 
-    <Image style = {styles.imageBanner} source = {require(`./assets/1.png`)}></Image>
+    <Image style = {styles.imageBanner} source = {require(`./assets/1.jpg`)}></Image>
 
     {/*Fim do banner*/}
 
