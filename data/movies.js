@@ -16,7 +16,7 @@ const Filmes =
 
     {
         id: '3',
-        nome: 'Um Tira da Pesada 4: Axel Foley',
+        nome: 'Um Tira da Pesada 4',
         nota: '4.0',
         imagem : 'https://casaldougkelly.com.br/wp-content/uploads/2024/07/um-tira-da-pesada-4.jpg'
     },
