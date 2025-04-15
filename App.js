@@ -1,5 +1,8 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
+import Filmes from './data/movies.js';
+
 import Cabecalho from './src/components/cabecalho';
 import Pesquisa from './src/components/barraPesquisa';
 import Banners from './src/components/Banners';
@@ -26,7 +29,21 @@ export default function App() {
     <Banners/>
     {/*Fim do banner*/}
 
-    <CardMovies/>
+    <View style = {{width: "90%"}}>
+    <FlatList
+
+      data ={Filmes}
+      horizontal = {true}
+      reyExtractor={(item) => item.id}
+      renderItem= {({item}) => (
+
+        <CardMovies titulo = {item.nome} nota = {item.nota} imagem = {item.imagem}/>
+
+  )} />
+
+
+      </View>
+    
 
     </View>
   );

@@ -9,10 +9,15 @@ const styles = StyleSheet.create({
         fontWeight: "Bold"
       },
     imgBanner: {
-      width: "100vw",   
-      height: 300,
+      width: "90vw",   
+      height: 200,
       marginTop: 20,
       borderRadius: 10
+      },
+      viewBanner:{
+        alignItems: "center",
+        marginLeft: 20,
+        marginRight: 20
       }
       
 })

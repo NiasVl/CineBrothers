@@ -6,8 +6,12 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 16,
         paddingRight: 16,
+
         width: 140,
-        height: 28
+        height: "fit-content",
+
+        alignItems: "center",
+        
     },
     titulo: {
         color: "white",
