@@ -12,8 +12,6 @@ import CardMovies from '../../components/cardsFilmes';
 export default function App() {
   const imagem = Math.floor(Math.random() * 4 + 1);
 
-
-
   return (
     <View style={styles.container}>
 
@@ -38,7 +36,7 @@ export default function App() {
       reyExtractor={(item) => item.id}
       renderItem= {({item}) => (
 
-        <CardMovies titulo = {item.nome} nota = {item.nota} imagem = {item.imagem}/>
+        <CardMovies titulo = {item.nome} nota = {item.nota} imagem = {item.imagem} sinopse = {item.sinopse}/>
 
   )} />
 

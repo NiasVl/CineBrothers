@@ -1,10 +1,21 @@
-import { View, Text } from "react-native-web";
+import { View, Text, Image } from "react-native-web";
+import { useNavigation } from "@react-navigation/core";
+import { useRoute } from "@react-navigation/core";
+import styles from "./style";
 
 export default function Details() {
 
+    const route = useRoute()
+
     return(
-        <View>
-            <Text> ola pagina detalhes</Text>
+        <View style = {styles.containerP}>
+            <View style = {styles.containerImg}>
+            <Image style = {styles.Imagem}  source = {{uri: (route.params.imagem)}} ></Image>
+            </View>
+            <Text style = {styles.titulo} >{route.params.titulo}</Text>
+            <Text style = {styles.nota} >{route.params.nota}</Text>
+            <Text style = {styles.sinopse} > {route.params.sinopse} </Text>
         </View>
     )
 }
+
