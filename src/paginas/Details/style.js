@@ -27,8 +27,11 @@ const styles = StyleSheet.create({
     },
 
     sinopse : {
-        fontSize: 25,
-        color: "white"
+        fontSize: 20,
+        lineHeight: 30,
+        color: 'white',
+        textAlign: 'justify',
+        margin: 20
     }
 
 })
