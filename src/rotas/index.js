@@ -9,9 +9,9 @@ export default function Rotas() {
     const stack = createNativeStackNavigator();
     return(
         <NavigationContainer>
-                <stack.Navigator>
-                    <stack.Screen name="Home" component={Home}/>
-                    <stack.Screen name="Details" component={Details}/>
+                <stack.Navigator  >
+                    <stack.Screen name="Home" component={Home}  options={{ headerShown: false }} />
+                    <stack.Screen name="Details" component={Details} options={{ headerShown: false }} />
 
                 </stack.Navigator>
 
