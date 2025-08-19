@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList} f
 import { Feather } from '@expo/vector-icons';
 import  {useState, useEffect, use} from 'react'
 
-import Filmes from '../../../data/movies';
 
 import Cabecalho from '../../components/cabecalho';
 import Pesquisa from '../../components/barraPesquisa';
@@ -45,7 +44,7 @@ export default function App() {
 
   }, [])
 
-
+  
 
   return (
     <View style={styles.container}>
@@ -63,24 +62,28 @@ export default function App() {
     <Banners/>
     {/*Fim do banner*/}
 
-    <View style = {{width: "90%"}}>
-    <FlatList
+        <Text style = {{color: "white", marginTop: 15, fontSize: 20, fontWeight: "bold", right: 140}}>Top Rated</Text>
+    <View style = {{width: "95%", marginTop: 15}}>
+        <View style = {{backgroundColor: '#1e0bff', borderRadius: 20 }}>
+    <FlatList style = {{marginLeft: 10}}
 
       data ={movies}
       horizontal = {true}
-      showsHorizontalScrollIndicator={false}
+      // showsHorizontalScrollIndicator={false}
       reyExtractor={(item) => item.id}
       renderItem= {({item}) => (
 
         <CardMovies 
+
+      
         titulo = {item.title} 
         nota = {item.vote_average} 
-        imagem = {item.poster_path} 
+        imagem = {`https://image.tmdb.org/t/p/w500${item.poster_path}`} 
         sinopse = {item.overview}/>
 
   )} />
 
-
+        </View>
       </View>
     
 
