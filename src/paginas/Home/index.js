@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList, ScrollView} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import  {useState, useEffect, use} from 'react'
 
@@ -13,11 +13,13 @@ import CardMovies from '../../components/cardsFilmes';
 
 export default function App() {
 
-  const [movies,setMovies] = useState([])
+  const [moviesTR,setMoviesTR] = useState([])
+  const [moviesUP, setMoviesUP] = useState([])
 
+  //Top rated
   useEffect(() => {
 
-    async function buscarFilmes() {
+    async function buscarFilmesTR() {
       const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
       const options = {
         method: 'GET',
@@ -33,13 +35,43 @@ export default function App() {
           let data = json.results
           console.log(data)
           
-          setMovies(data)
+          setMoviesTR(data)
         })
         
         
       }
       
-      buscarFilmes()
+      buscarFilmesTR()
+      
+
+  }, [])
+
+  //Upcoming
+  useEffect(() => {
+
+    async function buscarFilmesUP() {
+      const url = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMmNkYTUxYzRjYzljZDdiZTJjMzMzMDE3ZGM3OWE0NCIsIm5iZiI6MTc1NTAyMTYwNS44OTY5OTk4LCJzdWIiOiI2ODliODEyNTY2NTBjYzA1YWFjNzAwNjciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.i0wiHhy0MurWY0nId6NgI5gRpCipGKoBtGi5hpPVlT8'
+        }
+      };
+      
+      fetch(url, options)
+        .then(res => res.json())
+        .then(json => {
+          let data = json.results
+          console.log(data)
+          
+          setMoviesUP(data)
+        })
+        
+        
+      }
+      
+      buscarFilmesUP()
       
 
   }, [])
@@ -47,6 +79,7 @@ export default function App() {
   
 
   return (
+    <ScrollView>
     <View style={styles.container}>
 
 
@@ -62,12 +95,18 @@ export default function App() {
     <Banners/>
     {/*Fim do banner*/}
 
-        <Text style = {{color: "white", marginTop: 15, fontSize: 20, fontWeight: "bold", right: 140}}>Top Rated</Text>
+   
+          {/* Upcoming */}
+
+          <View style = {{alignItems: 'right', width: '100%', marginLeft: 50}}>
+            <Text style = {{color: "white", marginTop: 15, fontSize: 30, fontWeight: "regular", fontFamily: 'monospaced'}}>Upcoming</Text>
+          </View>
+
     <View style = {{width: "95%", marginTop: 15}}>
-        <View style = {{backgroundColor: '#1e0bff', borderRadius: 20 }}>
+        <View style = {{backgroundColor: 'purple', borderRadius: 20 }}>
     <FlatList style = {{marginLeft: 10}}
 
-      data ={movies}
+      data ={moviesUP}
       horizontal = {true}
       // showsHorizontalScrollIndicator={false}
       reyExtractor={(item) => item.id}
@@ -85,15 +124,48 @@ export default function App() {
 
         </View>
       </View>
-    
+
+          {/* Top rated */}
+
+          <View style = {{alignItems: 'right', width: '100%', marginLeft: 50}}>
+            <Text style = {{color: "white", marginTop: 15, fontSize: 30, fontWeight: "regular", fontFamily: 'monospaced'}}>Top Rated</Text>
+          </View>
+
+    <View style = {{width: "95%", marginTop: 15}}>
+      
+        <View style = {{backgroundColor: '#1e0bff', borderRadius: 20 }}>
+    <FlatList style = {{marginLeft: 10}}
+
+      data ={moviesTR}
+      horizontal = {true}
+      // showsHorizontalScrollIndicator={false}
+      reyExtractor={(item) => item.id}
+      renderItem= {({item}) => (
+
+        <CardMovies 
+
+      
+        titulo = {item.title} 
+        nota = {item.vote_average} 
+        imagem = {`https://image.tmdb.org/t/p/w500${item.poster_path}`} 
+        sinopse = {item.overview}/>
+
+  )} />
+
+        </View>
+      </View>
+
+
+
 
     </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: '100%',
         backgroundColor: '#141a29',
         alignItems: "center"
     }
