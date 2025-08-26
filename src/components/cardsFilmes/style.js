@@ -12,11 +12,14 @@ const styles = StyleSheet.create({
 
         alignItems: "center",
         
+        
     },
     titulo: {
         color: "white",
         fontSize: 12,
-        paddingTop: 8
+        paddingTop: 8,
+        textAlign: 'center'
+        
     },
     textNota: {
         fontSize: 10,

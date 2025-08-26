@@ -7,6 +7,11 @@ export default function CardMovies ({titulo, nota, imagem, sinopse}) {
      
     const navigation = useNavigation();
 
+    function roundTo(num, precision) {
+        const factor = Math.pow(10, precision);
+        return Math.round(num * factor) / factor;
+      }
+
     return(
         <TouchableOpacity style= {styles.containerMovie} onPress={()=> navigation.navigate("Details", {titulo,nota,imagem,sinopse})} >
             
@@ -14,7 +19,7 @@ export default function CardMovies ({titulo, nota, imagem, sinopse}) {
            
            <Text style ={styles.titulo}> {titulo}</Text>
 
-           <Text style ={styles.textNota}> {nota} </Text>
+           <Text style ={styles.textNota}> {nota.toFixed(1)} </Text>
 
 
         </TouchableOpacity>
