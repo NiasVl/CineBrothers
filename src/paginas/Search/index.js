@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 export default function Pesquisar() {
 
-const[filmes,setFilmes] = useState([''])
+    const [movies, setMovies] = useState([])
 
     useEffect(() => {
 
@@ -19,15 +19,18 @@ const[filmes,setFilmes] = useState([''])
               }
             };
             
-                const response = await fetch(url,options)
-                const data = await response.json()
-                console.log (data.results)
+            fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
 
-        }
+              setMovies(json)
 
-            
+              console.log(movies)
+            })
+    }
 
-    }, [])
+        buscarFilmes()
+}, [])
 
     const route = useRoute()
 

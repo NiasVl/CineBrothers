@@ -33,7 +33,7 @@ export default function App() {
         .then(res => res.json())
         .then(json => {
           let data = json.results
-          console.log(data)
+          
           
           setMoviesTR(data)
         })
@@ -63,7 +63,7 @@ export default function App() {
         .then(res => res.json())
         .then(json => {
           let data = json.results
-          console.log(data)
+         
           
           setMoviesUP(data)
         })
