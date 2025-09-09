@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
-import {useRoute} from '@react-navigation/native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList, ScrollView} from 'react-native';
+import { useNavigation } from "@react-navigation/core";
+import { useRoute } from "@react-navigation/core";
 import { useEffect, useState } from 'react'
-
+import CardMovies from '../../components/cardsFilmes';
 
 export default function Pesquisar() {
 
-    const [movies, setMovies] = useState([])
+    const [Filmes, setFilmes] = useState([])
 
     useEffect(() => {
 
@@ -19,24 +20,63 @@ export default function Pesquisar() {
               }
             };
             
-            fetch(url, options)
+          fetch(url, options)
             .then(res => res.json())
             .then(json => {
+              let data = json.results
 
-              setMovies(json)
-
-              console.log(movies)
+              console.log(data)
+              setFilmes(data)
+              console.log(Filmes)
             })
-    }
+            
 
-        buscarFilmes()
-}, [])
-
+          }
+          
+          buscarFilmes()
+          
+    
+      }, [])
+      
     const route = useRoute()
 
+          const navigation = useNavigation()
+
     return (
-        <View>
-            <Text> {route.params.pesquisa} </Text>
-        </View>
+          <View style = {{backgroundColor:"#141a29",height: "100%",alignContent: "center", justifyContent: "center" }}>
+            <View style = {{width: "95%", marginLeft: 10}}>
+
+            <View style = {{alignItems: 'center', width: '100%',}}>
+              <Text style = {{color: "white", marginBottom: 30, fontSize: 50, fontWeight: "regular", fontFamily: 'monospaced'}}>Resultados</Text>
+            </View>
+
+                <View style = {{backgroundColor: '#BA8E23', borderRadius: 20, }}>
+            <FlatList style = {{marginLeft: 10, height: 300}}
+        
+              data ={Filmes}
+              horizontal = {true}
+              // showsHorizontalScrollIndicator={false}
+              reyExtractor={(item) => item.id}
+              renderItem= {({item}) => (
+        
+                <CardMovies 
+        
+              
+                titulo = {item.title} 
+                nota = {item.vote_average} 
+                imagem = {`https://image.tmdb.org/t/p/w500${item.poster_path}`} 
+                sinopse = {item.overview}/>
+        
+          )} />
+        
+                </View>
+
+                            <TouchableOpacity onPress={() => navigation.goBack()} style = {{backgroundColor: "#950606",marginTop: 20, fontSize: 10, justifyContent: "center", alignItems: "center" }}>
+                                    <Text styles = {{}}>Voltar para a Home Page</Text>
+                            </TouchableOpacity>
+
+              </View>
+            </View>
+       
     )
 }

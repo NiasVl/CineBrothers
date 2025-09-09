@@ -20,7 +20,7 @@ export default function Details() {
                     <Text style = {styles.sinopse} > {route.params.sinopse} </Text>
             </ScrollView>     
 
-            <TouchableOpacity onPress={() => navigation.goBack()} style = {{backgroundColor: "white",marginBottom: 20, fontSize: 10 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style = {{backgroundColor: "#950606",marginBottom: 20, fontSize: 10 }}>
                     <Text styles = {{}}>Voltar para a Home Page</Text>
             </TouchableOpacity>
 
